@@ -1,8 +1,8 @@
 import os
 from datetime import datetime
 from flask import g, render_template, flash, redirect, url_for, jsonify, abort
-from flask.ext.login import LoginManager, login_user, logout_user, login_required, current_user
-from flask.ext.qrcode import QRcode
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+from flask_qrcode import QRcode
 
 app = Flask(__name__)
 app.config.from_pyfile('flaskapp.cfg')
