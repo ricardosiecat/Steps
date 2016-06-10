@@ -6,5 +6,5 @@ setup(name='FlaskApp',
       author='Ryan Jarvinen',
       author_email='ryanj@redhat.com',
       url='http://www.python.org/sigs/distutils-sig/',
-     install_requires=['Flask>=0.10.1','flask-login==0.2.7','flask-QRcode','peewee','flask-HTTPAuth','flask-Limiter','flask-Mail','flask-RESTful','flask-WTF'],
+     install_requires=['Flask>=0.10.1','flask-login==0.2.7','flask-QRcode','peewee','flask-HTTPAuth','flask-Limiter','flask-Mail','flask-RESTful','flask-WTF','MarkupSafe'],
      )
