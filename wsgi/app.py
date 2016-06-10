@@ -13,6 +13,6 @@ except IOError:
 # line, it's possible required libraries won't be in your searchable path
 # 
 
-from Flaskapp import app as application
-from Flaskapp import *
+from flaskapp import app as application
+from flaskapp import *
 db.create_all()
