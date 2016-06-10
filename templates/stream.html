@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% for receipt in stream %}
+    <article>
+        <h2>
+            <a href="{{ url_for('stream', username=receipt.from_user.email) }}">{{ receipt.from_user.username }}</a>
+        </h2>
+        <i class="clock"></i><time data-time="{{ receipt.r_timestamp }}" class="distime" datetime="{{ receipt.r_timestamp.strftime('%Y-%m-%d %H:%M:%S') }}">{{ receipt.r_timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</time>
+        <div class="post">
+            {{ receipt.content }}
+        </div>
+        <div class="post">
+            $ {{ '%0.2f' %  receipt.total }}
+        </div>
+    </article>
+{% endfor %}
+{% endblock %}

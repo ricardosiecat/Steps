@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% from 'macros.html' import render_field %}
+
+{% block content %}
+    <h1>Your Receipt:</h1>
+    <img src="{{ qrcode(qr) }}">
+{% endblock %}
