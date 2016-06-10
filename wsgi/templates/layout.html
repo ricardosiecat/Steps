@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>{% block title %}TwoCans{% endblock %}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+        <!--[if lt IE 9]>
+            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script>window.html5 || document.write('<script src="/static/js/vendor/html5shiv.js"><\/script>')</script>
+        <![endif]-->
+    </head>
+    <body>
+
+        <header>
+
+          <div class="row">
+
+            <div class="grid-15">
+
+              <a href="{{ url_for('index') }}" class="icon-logo"></a>
+
+            </div>
+
+            <div class="grid-75">
+                
+                <!-- Say Hi -->
+                <h1>Hello{% if current_user.is_authenticated %} {{ current_user.username }}{% endif %}!</h1>
+            <ul class="menu-nav">
+                <li><a href="{{ url_for('history') }}" class="menu-nav">History</a></li>
+                <li><a href="{{ url_for('expenses') }}" class="menu-nav">My Expenses</a></li>
+                <li><a href="#" class="menu-nav">Settings</a></li>
+                <li><a href="{{ url_for('prizes') }}" id="highlight" class="menu-nav">Prizes</a></li>
+            </ul>
+
+            </div>
+
+            <div class="grid-15">
+                
+                <!-- Log in/Log out -->
+                {% if current_user.is_authenticated %}
+                <a href="{{ url_for('logout') }}" class="icon-power" title="Log out"></a>
+                {% else %}
+                <a href="{{ url_for('login') }}" class="icon-power" title="Log in"></a>
+                <a href="{{ url_for('register') }}" class="icon-profile" title="Register"></a>
+                {% endif %}
+                
+            </div>
+
+          </div>
+
+        </header>
+        
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="notification {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="row">
+
+          <div class="main">
+
+            <nav>
+
+
+              
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('stream') }}">Stream</a>
+{#                    <a href="{{ url_for('daystream') }}">Today</a>#}
+{#                    <a href="{{ url_for('weekstream') }}">Week</a>#}
+{#                    <a href="{{ url_for('monthstream') }}">Month</a>#}
+                    {% if current_user.is_admin %}
+                        <a href="{{ url_for('new_receipt') }}" class="new">Create New Receipt</a>
+                    {% endif %}
+                {% endif %}
+
+            </nav>
+
+            {% block content %}{% endblock %}
+
+          </div>
+
+        </div>
+
+        <footer>
+
+          <div class="row">
+
+            <p>A Social App built with Flask<br>by <a href="http://teamtreehouse.com">Treehouse</a></p>
+
+          </div>
+
+        </footer>
+
+        <script src="{{ url_for('static', filename='js/vendor/disTime.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    </body>
+</html>

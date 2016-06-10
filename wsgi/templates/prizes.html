@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>These are the prices, promotions or discounts available to you!</h1>
+    {% if current_user.newbie_rew %}
+        <h2>Register to Tket </h2>
+        <h2>It's worth: <br> Free Drink! </h2>
+    {% endif %}
+    <a href="{{ url_for('complete_registery') }}"><h2>Complete Registry! </h2></a>
+    <h2>It's worth: <br> 20 Points</h2>
+{% endblock %}
